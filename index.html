@@ -1,22 +1,58 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Calculadora</title>
-  <meta charset="utf-8">
-  <script type="text/javascript">
-    const vaciar = () => {
-      document.getElementById("pantalla").value = "";
-    }
+<html lang="es">
+  <head>
+    <title>Calculadora</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="css/estilos.css" />
+    <script src="js/require.js"  type="text/javascript"></script>
+    <script type="module" src="js/validar.js"></script>
+    <!-- <script>
+      require(['js/validar'], function(validar) {
+          // Lógica para llamar a la función validar
+          let entrada = document.getElementById("pantalla").value;
+          if (validar(entrada)) {
+              // La entrada es válida
+              console.log("La entrada es válida.");
+          } else {
+              // La entrada no es válida
+              console.log("La entrada no es válida.");
+          }
+      });
+      </script>     -->
+  </head>
 
-    const cuadrado = () => {
-      let num = document.getElementById("pantalla");
-      num.value = num.value * num.value;
-    }
-  </script>
-</head>
-<body>
-  Número:
-  <input type="text" id="pantalla" onclick="vaciar()">
-  <button id="cuadrado" onclick="cuadrado()">x<sup>2</sup></button>
- </body>
+  <body>
+      
+    <div class="calculadora">
+      <h1>Calculadora de CORE</h1>
+      Número:
+      <input type="text" id="pantalla" onclick="require(['js/vaciar'], function(vaciar) {vaciar(); })" />
+      
+      <h2 id="info" 
+          class="grande" 
+          attribute="title">Info sobre el número
+      </h2>
+      
+      <h3>Operaciones unitarias</h3>
+        <button onclick="require(['js/cuadrado'], function(cuadrado) { cuadrado(); })">x<sup>2</sup></button>
+        <button id="modulo" onclick="require(['js/mod'], function(mod) { mod(); })"><inf>Mod</inf></button>
+        <button id="factorial" onclick="require(['js/fac'], function(fac) { fac(); })"><inf>n!</inf></button>
+      
+      <h3>Operaciones binarias</h3>
+        <button id="suma" onclick="require(['js/add'], function(add) { add(); })">+</button>
+        <button id="multiplicacion" onclick="require(['js/mul'], function(mul) { mul(); })">*</button>
+        <button onclick="require(['js/eq'], function(eq) { eq(); })">=</button>
+      
+      <h3>Operaciones en formato CSV</h3>
+        <button id="sumatorio" onclick="require(['js/sumatorio'], function(sumatorio) { sumatorio(); })">Σx</button>
+        <button id="ordenar" onclick="require(['js/ordenar'], function(ordenar) { ordenar(); })">ordenar</button>
+        <button id="revertir" onclick="require(['js/revertir'], function(revertir) { revertir(); })">revertir</button>
+        <button id="quitar" onclick="require(['js/quitar'], function(quitar) { quitar(); })">quitar</button>
+    </div>
+
+          
+    <!-- <script src="autocorector/tests/checks.js"></script> -->
+    <script src="js/main.js"></script>
+    
+  </body>
 </html>
